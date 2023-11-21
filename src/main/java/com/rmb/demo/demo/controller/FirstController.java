@@ -9,7 +9,7 @@ public class FirstController {
     @GetMapping("/")
     public String helloWorld()
     {
-        return "Hello World";
+        return "<h1>Hello World</h1>";
     }
 
 
