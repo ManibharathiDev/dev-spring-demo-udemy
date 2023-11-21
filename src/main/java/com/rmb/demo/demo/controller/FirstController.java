@@ -13,4 +13,25 @@ public class FirstController {
     }
 
 
+    @GetMapping("/name")
+    public String getName()
+    {
+        return "<h2>Manibharathi</h2>";
+    }
+
+    // expose a new end point "workout"
+    @GetMapping("/workout")
+    public String getDailyWorkout()
+    {
+        return "Run a hard 5k!";
+    }
+
+    //expose a new end point for "fortune"
+    @GetMapping("/fortune")
+    public String getDailyFortune()
+    {
+        return "Today is your lucky day!";
+    }
+
+
 }
