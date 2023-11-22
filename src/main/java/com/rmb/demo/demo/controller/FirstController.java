@@ -1,17 +1,24 @@
 package com.rmb.demo.demo.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FirstController {
 
+    // inject properties for coach.name and coach.age
+    @Value("${coach.name}")
+    private String coachName;
+
+    @Value("${coach.age}")
+    private String coachAge;
+
     @GetMapping("/")
     public String helloWorld()
     {
         return "<h1>Hello World</h1>";
     }
-
 
     @GetMapping("/name")
     public String getName()
@@ -31,6 +38,18 @@ public class FirstController {
     public String getDailyFortune()
     {
         return "Today is your lucky day!";
+    }
+
+    @GetMapping("/coach_name")
+    public String getCoachName()
+    {
+        return "Your coach name is "+coachName;
+    }
+
+    @GetMapping("/coach_age")
+    public String getCoachAge()
+    {
+        return "Your coach age is "+coachAge;
     }
 
 
