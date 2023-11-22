@@ -9,16 +9,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class CoachController {
 
     // define a private field for the dependency
+    // Define a setter method for dependency injection
+    @Autowired
     private Coach coach;
 
+    // Define a setter method for dependency injection
+    @Autowired
+    public void setCoach(Coach coach)
+    {
+        //this.coach = coach;
+    }
+
     // Define a constructor for dependency injection
+
     @Autowired
     public CoachController(Coach coach)
     {
-        this.coach = coach;
+        //this.coach = coach;
     }
 
-    @GetMapping("/dailyworkout")
+
+    @GetMapping("/daily-workout")
     public String getDailyWorkout()
     {
         return  coach.getDailyWorkOut();
