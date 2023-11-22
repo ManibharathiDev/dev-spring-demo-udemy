@@ -6,3 +6,9 @@ Running sprinboot app in two ways without using IDE
     mvnw spring-boot:run
 
 #07 Server Configuration
+# Spring Boot core
+###############################################
+#08 Inversion Of Control - Dependency Injection
+    Two Types of Injection
+    1. Constructor Injection
+    2. Setter Injection
