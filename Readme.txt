@@ -12,3 +12,7 @@ Running sprinboot app in two ways without using IDE
     Two Types of Injection
     1. Constructor Injection
     2. Setter Injection
+
+# 09 Set Component Scanning
+Spring boot scan component only own packages not for other package
+If you want, scan all packages you should be added scanBasePackages in Main Class

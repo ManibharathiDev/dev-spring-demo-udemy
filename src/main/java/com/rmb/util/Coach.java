@@ -1,4 +1,4 @@
-package com.rmb.demo.demo;
+package com.rmb.util;
 
 public interface Coach {
     String getDailyWorkOut();

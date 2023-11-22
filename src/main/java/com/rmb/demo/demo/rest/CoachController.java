@@ -1,6 +1,6 @@
-package com.rmb.demo.demo.controller;
+package com.rmb.demo.demo.rest;
 
-import com.rmb.demo.demo.Coach;
+import com.rmb.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
