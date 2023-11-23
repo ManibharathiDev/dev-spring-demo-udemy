@@ -14,7 +14,7 @@ public class CoachController {
 
     // Setter Inject with @Qualifier Annotation
     @Autowired
-    private void setCoach(@Qualifier("tennisCoach") Coach coach)
+    private void setCoach(Coach coach)
     {
         this.coach = coach;
     }
