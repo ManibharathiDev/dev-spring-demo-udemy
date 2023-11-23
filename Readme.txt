@@ -21,3 +21,17 @@ If you want, scan all packages you should be added scanBasePackages in Main Clas
 
 # 11 Field Injection : Not recommended by the spring.io development team
     Field Injection ... no longer cool
+
+# 12 Qualifier
+
+If we implements coach in multiple class, we get following error
+
+Description:
+
+Parameter 0 of method setCoach in com.rmb.demo.demo.rest.CoachController required a single bean, but 4 were found:
+	- baseBallCoach: defined in file [E:\Manibharathi\dev-spring-boot\SpringBootApp\target\classes\com\rmb\demo\demo\common\BaseBallCoach.class]
+	- cricketCoach: defined in file [E:\Manibharathi\dev-spring-boot\SpringBootApp\target\classes\com\rmb\demo\demo\common\CricketCoach.class]
+	- tennisCoach: defined in file [E:\Manibharathi\dev-spring-boot\SpringBootApp\target\classes\com\rmb\demo\demo\common\TennisCoach.class]
+	- trackCoach: defined in file [E:\Manibharathi\dev-spring-boot\SpringBootApp\target\classes\com\rmb\demo\demo\common\TrackCoach.class]
+
+We can avoid this by using @Qualifier Annotation

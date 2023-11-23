@@ -1,35 +1,29 @@
 package com.rmb.demo.demo.rest;
 
-import com.rmb.util.Coach;
+import com.rmb.demo.demo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CoachController {
 
-    // define a private field for the dependency
-    // Define a setter method for dependency injection
-    // Field Injection
-    @Autowired
+
     private Coach coach;
 
-    // Define a setter method for dependency injection
-    // Setter Injection
+    // Setter Inject with @Qualifier Annotation
     @Autowired
-    public void setCoach(Coach coach)
+    private void setCoach(@Qualifier("tennisCoach") Coach coach)
     {
-        //this.coach = coach;
+        this.coach = coach;
     }
 
-    // Define a constructor for dependency injection
-    // Constructor Injection
-
-    @Autowired
-    public CoachController(Coach coach)
+    //Constructor Inject with @Qualifier Annotation
+  /*public CoachController(@Qualifier("tennisCoach") Coach coach)
     {
-        //this.coach = coach;
-    }
+        this.coach = coach;
+    }*/
 
 
     @GetMapping("/daily-workout")

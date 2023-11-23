@@ -1,4 +1,4 @@
-package com.rmb.util;
+package com.rmb.demo.demo.common;
 
 import org.springframework.stereotype.Component;
 /*Add component annotation*/
