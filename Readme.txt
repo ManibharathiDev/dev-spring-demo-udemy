@@ -18,3 +18,6 @@ Spring boot scan component only own packages not for other package
 If you want, scan all packages you should be added scanBasePackages in Main Class
 
 # 10 Setter Injection
+
+# 11 Field Injection : Not recommended by the spring.io development team
+    Field Injection ... no longer cool

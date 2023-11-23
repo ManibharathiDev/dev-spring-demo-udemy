@@ -10,10 +10,12 @@ public class CoachController {
 
     // define a private field for the dependency
     // Define a setter method for dependency injection
+    // Field Injection
     @Autowired
     private Coach coach;
 
     // Define a setter method for dependency injection
+    // Setter Injection
     @Autowired
     public void setCoach(Coach coach)
     {
@@ -21,6 +23,7 @@ public class CoachController {
     }
 
     // Define a constructor for dependency injection
+    // Constructor Injection
 
     @Autowired
     public CoachController(Coach coach)
