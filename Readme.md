@@ -50,3 +50,40 @@ In Default, All beans are singleton
 ## Bean Lifecycle 
     @PostConstruct : Do my stuff when application started
     @PreDestroy : Do my stuff when application terminate
+
+## 15 Configure Beans
+
+We introduce new class without add @Component annotations.
+If we add that class to Controller, We get below error
+
+      Description:
+
+      Parameter 0 of constructor in com.rmb.demo.demo.rest.CoachController required a bean of type 'com.rmb.demo.demo.common.Coach' that could not be found.
+
+      The injection point has the following annotations:
+      - @org.springframework.beans.factory.annotation.Qualifier("swimCoach")
+
+      The following candidates were found but could not be injected:
+      - User-defined bean
+        - User-defined bean
+        - User-defined bean
+        - User-defined bean
+
+      Action:
+      Consider revisiting the entries above or defining a bean of type 'com.rmb.demo.demo.common.Coach' in your configuration.
+
+We can avoid this error using configuration beans.
+
+```java
+@Configuration
+public class CoachConfig 
+    {
+         @Bean
+         public Coach swimCoach()
+         {
+            return new SwimCoach();
+         }
+   }
+```
+   1. In Default method name is bean ID
+   2. If you want to change bean ID mention in the @Bean annotation

@@ -13,7 +13,7 @@ public class CoachController {
     private Coach coach;
     private Coach anotherCoach;
 
-    public CoachController(@Qualifier("trackCoach") Coach coach)
+    public CoachController(@Qualifier("aqua") Coach coach)
     {
         this.coach = coach;
 
