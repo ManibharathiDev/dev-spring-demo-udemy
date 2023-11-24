@@ -1,14 +1,15 @@
-Running sprinboot app in two ways without using IDE
+## Running Springboot in two ways
+Running Springboot app in two ways without using IDE
 1. Using Jar
-    Create Package: mvnw package
-    running jar:java -jar .jar
+    - Create Package: mvnw package
+    - running jar:java -jar .jar
 2. Using SpringBoot run
-    mvnw spring-boot:run
+    - mvnw spring-boot:run
 
-#07 Server Configuration
-# Spring Boot core
-###############################################
-#08 Inversion Of Control - Dependency Injection
+## 07 Server Configuration
+## Spring Boot core
+## 08 Inversion Of Control - Dependency Injection
     Two Types of Injection
     1. Constructor Injection
     2. Setter Injection
+
