@@ -14,13 +14,13 @@ public class CoachController {
 
     // Setter Inject with @Qualifier Annotation
     @Autowired
-    private void setCoach(Coach coach)
+    private void setCoach(@Qualifier("cricketCoach") Coach coach)
     {
         this.coach = coach;
     }
 
     //Constructor Inject with @Qualifier Annotation
-  /*public CoachController(@Qualifier("tennisCoach") Coach coach)
+    /*public CoachController(@Qualifier("tennisCoach") Coach coach)
     {
         this.coach = coach;
     }*/

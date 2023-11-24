@@ -37,3 +37,5 @@ Parameter 0 of method setCoach in com.rmb.demo.demo.rest.CoachController require
 We can avoid this by using @Qualifier Annotation
 
 # 13 We can use @Primary annotation to which one is primary
+
+# 13 Lazy-Initialization : The bean only initialized when we need
