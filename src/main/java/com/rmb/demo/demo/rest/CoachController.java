@@ -11,20 +11,29 @@ public class CoachController {
 
 
     private Coach coach;
+    private Coach anotherCoach;
 
-    // Setter Inject with @Qualifier Annotation
-    @Autowired
-    private void setCoach(@Qualifier("cricketCoach") Coach coach)
+    public CoachController(@Qualifier("trackCoach") Coach coach)
     {
         this.coach = coach;
+
     }
 
-    //Constructor Inject with @Qualifier Annotation
-    /*public CoachController(@Qualifier("tennisCoach") Coach coach)
+
+    /*@Autowired
+    public CoachController(@Qualifier("cricketCoach") Coach coach, @Qualifier("cricketCoach") Coach anotherCoach)
     {
         this.coach = coach;
+        this.anotherCoach = anotherCoach;
+
+        System.out.println("Coach Status => "+(this.coach == this.anotherCoach));
     }*/
 
+    @GetMapping("/check")
+    public String check()
+    {
+        return "Status => "+(this.coach == this.anotherCoach) +" ";
+    }
 
     @GetMapping("/daily-workout")
     public String getDailyWorkout()

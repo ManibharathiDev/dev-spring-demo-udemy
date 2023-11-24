@@ -39,3 +39,12 @@ We can avoid this by using @Qualifier Annotation
 # 13 We can use @Primary annotation to which one is primary
 
 # 13 Lazy-Initialization : The bean only initialized when we need
+
+# 14 Bean Scopes / Bean Lifecycles
+
+    In Default, All beans are singleton
+
+    Prototype = ConfigurableBeanFactory.SCOPE_PROTOTYPE
+    Singleton = ConfigurableBeanFactory.SCOPE_SINGLETON
+
+    Bean Lifecycle => @PostConstruct, @PreDestroy
