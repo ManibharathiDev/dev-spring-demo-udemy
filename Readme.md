@@ -87,3 +87,11 @@ public class CoachConfig
 ```
    1. In Default method name is bean ID
    2. If you want to change bean ID mention in the @Bean annotation
+
+## 16 Hibernate-JPA-MySQL With Command Line Tool
+### Setup Database Connection
+```property
+spring.datasource.url=jdbc:mysql://localhost:3306/dbname
+spring.datasource.username=username
+spring.datasource.password=password
+```
