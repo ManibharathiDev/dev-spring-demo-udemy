@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -21,9 +22,157 @@ public class DemoApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO)
     {
         return runner -> {
-            createStudent(studentDAO);
+
+            do {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("1 : Create");
+                System.out.println("2 : Read");
+                System.out.println("3 : Update");
+                System.out.println("4 : Delete");
+                System.out.println("Enter your option");
+                int option = sc.nextInt();
+                switch (option) {
+                    case 1:
+                        createStudent(studentDAO);
+                        break;
+                    case 2:
+                        readStudent(studentDAO);
+                        break;
+                    case 3:
+                        updateStudent(studentDAO);
+                        break;
+                    case 4:
+                        deleteStudent(studentDAO);
+                        break;
+                    default:
+                        System.out.println("Invalid");
+                }
+            } while (true);
+
+
+            //createStudent(studentDAO);
         };
     }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        ArrayList<Student> studentArrayList = studentDAO.studentList();
+        for(Student curr : studentArrayList)
+        {
+            System.out.println(curr);
+        }
+        System.out.println("Enter the ID that you wish to delete");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+
+        boolean isFound = false;
+        Student foundStudent = null;
+        for(Student curr : studentArrayList)
+        {
+            if(curr.getId() == id)
+            {
+                isFound = true;
+                foundStudent = curr;
+                break;
+            }
+        }
+        if(!isFound)
+        {
+            System.out.println("No student found!, Please enter valid id");
+            return;
+        }
+
+        System.out.println("Deleting...");
+        studentDAO.delete(foundStudent.getId());
+        System.out.println("Student Data is Deleted");
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        ArrayList<Student> studentArrayList = studentDAO.studentList();
+        for(Student curr : studentArrayList)
+        {
+            System.out.println(curr);
+        }
+        System.out.println("Enter the ID that you wish to update");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+
+        boolean isFound = false;
+        Student foundStudent = null;
+        for(Student curr : studentArrayList)
+        {
+            if(curr.getId() == id)
+            {
+                isFound = true;
+                foundStudent = curr;
+                break;
+            }
+        }
+
+
+
+        if(!isFound)
+        {
+            System.out.println("No student found!, Please enter valid id");
+            return;
+        }
+
+        System.out.println("Stored details are");
+        System.out.println(foundStudent);
+        System.out.println("Update Option");
+        System.out.println("1 : First Name");
+        System.out.println("2 : Second Name");
+        System.out.println("3 : Email");
+        System.out.println("Enter your update option");
+        int updateOption = sc.nextInt();
+        sc.nextLine();
+        if (updateOption == 1) {
+            System.out.println("Enter the First Name");
+            String fName = sc.nextLine();
+            foundStudent.setFirstName(fName);
+            System.out.println("Updating...");
+            studentDAO.update(foundStudent);
+            System.out.println("Student updated");
+        }
+        else if(updateOption == 2)
+        {
+            System.out.println("Enter the Last Name");
+            String lName = sc.nextLine();
+            foundStudent.setLastName(lName);
+            System.out.println("Updating...");
+            studentDAO.update(foundStudent);
+            System.out.println("Student updated");
+        }
+        else if(updateOption == 3)
+        {
+            System.out.println("Enter the Email");
+            String email = sc.nextLine();
+            foundStudent.setEmail(email);
+            System.out.println("Updating...");
+            studentDAO.update(foundStudent);
+            System.out.println("Student updated");
+        }
+        else
+            System.out.println("Invalid Option!");
+
+
+    }
+
+    private void readStudent(StudentDAO studentDAO) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the student id");
+        int id = sc.nextInt();
+        Student student = studentDAO.findById(id);
+        if(student != null)
+        {
+            System.out.println("ID : "+student.getId());
+            System.out.println("Name : "+student.getFirstName()+" "+student.getLastName());
+            System.out.println("Email : "+student.getEmail());
+            return;
+        }
+        System.out.println("No Student Found! Invalid ID");
+
+    }
+
 
     private static void createStudent(StudentDAO studentDAO)
     {
