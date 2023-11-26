@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class StudentDAPImpl implements StudentDAO{
@@ -37,8 +38,22 @@ public class StudentDAPImpl implements StudentDAO{
 
     @Override
     public ArrayList<Student> studentList() {
-        TypedQuery<Student> typedQuery = entityManager.createQuery("FROM Student",Student.class);
+//        TypedQuery<Student> typedQuery = entityManager.createQuery("FROM Student",Student.class);
+        TypedQuery<Student> typedQuery = entityManager.createQuery("FROM Student order by firstName",Student.class);
         return (ArrayList<Student>) typedQuery.getResultList();
+    }
+
+    @Override
+    public List<Student> findBylastName(String name) {
+        //Create Query
+        TypedQuery<Student> theQuery = entityManager.createQuery(
+                "FROM Student where lastName=:theData",Student.class);
+
+        // Set Query Parameters
+        theQuery.setParameter("theData",name);
+
+        // Return Query Results
+        return theQuery.getResultList();
     }
 
     @Override
@@ -50,7 +65,20 @@ public class StudentDAPImpl implements StudentDAO{
     @Override
     @Transactional
     public void delete(int id) {
-        this.entityManager.remove(this.entityManager.getReference(Student.class,id));
+
+        Student student = entityManager.find(Student.class,id);
+        this.entityManager.remove(student);
+
+        //this.entityManager.remove(this.entityManager.getReference(Student.class,id));
         //this.entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        int numRowsDeleted = this.entityManager
+                .createQuery("DELETE FROM Student")
+                .executeUpdate();
+        return 0;
     }
 }

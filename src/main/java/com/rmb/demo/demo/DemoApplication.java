@@ -6,8 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -29,6 +31,8 @@ public class DemoApplication {
                 System.out.println("2 : Read");
                 System.out.println("3 : Update");
                 System.out.println("4 : Delete");
+                System.out.println("5 : Find By Last Name");
+                System.out.println("6 : Delete All");
                 System.out.println("Enter your option");
                 int option = sc.nextInt();
                 switch (option) {
@@ -44,6 +48,12 @@ public class DemoApplication {
                     case 4:
                         deleteStudent(studentDAO);
                         break;
+                    case 5:
+                        readStudentByLastName(studentDAO);
+                        break;
+                    case 6:
+                        deleteAll(studentDAO);
+                        break;
                     default:
                         System.out.println("Invalid");
                 }
@@ -52,6 +62,12 @@ public class DemoApplication {
 
             //createStudent(studentDAO);
         };
+    }
+
+    private void deleteAll(StudentDAO studentDAO)
+    {
+        int numRowsDeleted = studentDAO.deleteAll();
+        System.out.println(numRowsDeleted +" Rows Deleted");
     }
 
     private void deleteStudent(StudentDAO studentDAO) {
@@ -170,6 +186,20 @@ public class DemoApplication {
             return;
         }
         System.out.println("No Student Found! Invalid ID");
+
+    }
+
+    private static void readStudentByLastName(StudentDAO studentDAO)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the student Last Name");
+        String lastName = sc.nextLine();
+
+        List<Student> theStudents = studentDAO.findBylastName(lastName);
+        for(Student stu : theStudents)
+        {
+            System.out.println(stu);
+        }
 
     }
 
