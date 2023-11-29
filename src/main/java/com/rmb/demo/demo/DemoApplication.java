@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class DemoApplication {
                 System.out.println("3 : Update");
                 System.out.println("4 : Delete");
                 System.out.println("5 : Find By Last Name");
-                System.out.println("6 : Delete All");
+                System.out.println("6 : Delete All1 ");
                 System.out.println("Enter your option");
                 int option = sc.nextInt();
                 switch (option) {
