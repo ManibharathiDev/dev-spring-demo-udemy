@@ -125,3 +125,10 @@ CREATE TABLE `student` (
    Bad Request Exception
 
 ```
+
+## 19 Global Exception Handler
+   We need global exception handler for real-time projects
+   What we do?
+   In Spring, has @ControllerAdvice annotation for handling global exception handler
+   1. Create a new class with @ControlelrAdvice Annotation
+   2. Add Same @ExceptionHandler code in that class. 
