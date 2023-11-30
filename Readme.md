@@ -118,3 +118,10 @@ CREATE TABLE `student` (
 ```
 
 ## 18 Rest API
+
+## 18 Rest API with Exception Handler
+```exception
+   Not Found Exception
+   Bad Request Exception
+
+```
