@@ -2,10 +2,10 @@ package com.rmb.demo.demo.rest;
 
 import com.rmb.demo.demo.entity.Students;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.connector.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,8 @@ public class StudentRestController {
         theStudents.add(new Students("Sainithran","Manibharathi"));
     }
 
+
+
     @GetMapping("/students")
     public List<Students> getStudentList()
     {
@@ -40,12 +42,43 @@ public class StudentRestController {
     public Students getStudentById(@PathVariable int studentId)
     {
 
-        if(studentId >= theStudents.size())
+//        if(studentId >= theStudents.size())
+//        {
+//            return new Students();
+//        }
+
+
+
+        if(studentId >= theStudents.size() || studentId < 0)
         {
-            return new Students();
+            throw new StudentNotFoundException("Student id not found - " + studentId);
         }
 
         return theStudents.get(studentId);
     }
 
+    // Add an exception handler using @ExceptionHandler
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exe)
+    {
+        StudentErrorResponse studentErrorResponse = new StudentErrorResponse();
+        studentErrorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        studentErrorResponse.setMessage(exe.getMessage());
+        studentErrorResponse.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(studentErrorResponse,HttpStatus.NOT_FOUND);
+    }
+
+    // add another exception hanlder... to catch any exception (catch all)
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleException(Exception exe)
+    {
+
+        StudentErrorResponse studentErrorResponse = new StudentErrorResponse();
+        studentErrorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        studentErrorResponse.setMessage(exe.getMessage());
+        studentErrorResponse.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(studentErrorResponse,HttpStatus.BAD_REQUEST);
+    }
 }
