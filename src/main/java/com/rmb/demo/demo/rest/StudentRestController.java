@@ -2,10 +2,10 @@ package com.rmb.demo.demo.rest;
 
 import com.rmb.demo.demo.entity.Students;
 import jakarta.annotation.PostConstruct;
-import org.apache.catalina.connector.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,6 @@ public class StudentRestController {
         theStudents.add(new Students("Vimala","Manibharathi"));
         theStudents.add(new Students("Sainithran","Manibharathi"));
     }
-
-
 
     @GetMapping("/students")
     public List<Students> getStudentList()
